@@ -1,0 +1,66 @@
+h4 {
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+}
+
+.margin-bottom {
+	margin-bottom: 10px;
+}
+
+.flex-end {
+	display: flex;
+	justify-content: flex-end;
+}
+
+
+.required-answer, 
+#card-errors {
+	color: #fa755a;
+	font-size: 12px;
+	margin-top: 3px;
+}
+
+.required-answer {
+	display: none;
+}
+
+#create-payment-success,
+#create-payment-error,
+#check-payment-success,
+#check-payment-error {
+	display: none;
+}
+
+/*Remove up down arrows to number inputs*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none; 
+	margin: 0; 
+}
+
+.form-control::-moz-placeholder {
+	color: #aab7c4;
+}
+.form-control:-ms-input-placeholder {
+	color: #aab7c4;
+}
+.form-control::-webkit-input-placeholder {
+	color: #aab7c4;
+}
+
+/*Styles the card Element*/
+.StripeElement {
+	padding: 10px 12px;
+}
+
+.StripeElement--focus {
+	box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+	border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+	background-color: #fefde5 !important;
+}

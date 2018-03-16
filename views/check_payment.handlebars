@@ -1,0 +1,79 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<h4>Check Payment</h4>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+	<form novalidate="" action="/check-payment" method="post" id="check-payment-form">
+		<div class="row margin-bottom">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="card">
+					<h5 class="card-header">Search Order</h5>
+					<div class="card-body">
+
+						<div class="form-group row">
+							<label for="customer-name" class="col-sm-3 col-form-label">Customer Name</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="customerName" id="customer-name" placeholder="Customer Name" required>
+								<div class="required-answer" id="customer-name-error">Customer name is required.</div>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="payment-reference-code" class="col-sm-3 col-form-label">Payment Reference Code</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="paymentReferenceCode" id="payment-reference-code" placeholder="Payment Reference Code" required>
+								<div class="required-answer" id="payment-reference-code-error">Payment reference code is required.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+
+		<div class="row margin-bottom">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 flex-end">
+				<button class="btn btn-primary" type="submit" id="check-payment">Submit</button>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</form>
+
+	<div class="modal fade" id="check-payment-modal" tabindex="-1" role="dialog" aria-labelledby="checkPaymentModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="check-payment-modal-header"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="check-payment-success">
+						<p><strong>Customer Name: </strong><span id="success-customer-name"></span></p>
+						<p><strong>Customer Phone Number: </strong><span id="success-customer-number"></span></p>
+						<p><strong>Currency: </strong><span id="success-currency"></span></p>
+						<p><strong>Price: </strong><span id="success-price"></span></p>
+					</div>
+					<div id="check-payment-error">
+						<p><strong>Error Code: </strong><span id="error-code"></span></p>
+						<p><strong>Message: </strong><span id="error-message"></span></p>
+						<div class="mongo-error">Mongo Error Details:
+							<ul>
+								<li>Message: <span id="mongo-error-message"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="static/js/check_payment.js"></script>

@@ -1,0 +1,146 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<h4>Create Payment</h4>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+	<form novalidate="" action="/create-payment" method="post" id="create-payment-form">
+		<div class="row margin-bottom">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="card">
+					<h5 class="card-header">Order Details</h5>
+					<div class="card-body">
+
+		 				<div class="form-group row">
+							<label for="customer-name" class="col-sm-3 col-form-label">Name</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="customerName" id="customer-name" placeholder="Name" required>
+								<div class="required-answer" id="customer-name-error">Name is required.</div>
+							</div>
+		 				</div>
+
+		 				<div class="form-group row">
+							<label for="customer-number" class="col-sm-3 col-form-label">Phone Number</label>
+							<div class="col-sm-9">
+								<input type="number" class="form-control" name="customerNumber" id="customer-number" placeholder="Phone number" required>
+								<div class="required-answer" id="customer-number-error">Phone number is required.</div>
+							</div>
+		 				</div>
+
+		 				<div class="form-group row">
+							<label for="currency" class="col-sm-3 col-form-label">Currency</label>
+							<div class="col-sm-9">
+								<select class="form-control" name="currency" id="currency">
+									<option value="HKD">HKD</option>
+									<option value="USD">USD</option>
+									<option value="AUD">AUD</option>
+									<option value="EUR">EUR</option>
+									<option value="JPY">JPY</option>
+									<option value="CNY">CNY</option>
+								</select>
+								<div class="required-answer" id="currency-error">Currency is required.</div>
+							</div>
+		 				</div>
+
+		 				<div class="form-group row">
+							<label for="price" class="col-sm-3 col-form-label">Price</label>
+							<div class="col-sm-9">
+								<input type="number" class="form-control" name="price" id="price" placeholder="Price" required>
+								<div class="required-answer" id="price-error">Price is required.</div>
+							</div>
+		 				</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+
+ 		<div class="row margin-bottom">
+ 			<div class="col-md-1"></div>
+ 			<div class="col-md-10">
+ 				<div class="card">
+ 					<h5 class="card-header">Payment Details</h5>
+ 					<div class="card-body">
+
+		  				<div class="form-group row">
+							<label for="cardholder-name" class="col-sm-3 col-form-label">Cardholder Name</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="cardholderName" id="cardholder-name" placeholder="Cardholder name" required>
+								<div class="required-answer" id="cardholder-name-error">Cardholder name is required.</div>
+							</div>
+		 				</div>
+						
+						<div class="form-group row">
+							<label for="card-element" class="col-sm-3 col-form-label">Credit Card</label>
+							<div class="col-sm-9">
+								{{!-- the card Element created below will be inserted here --}}
+								<div class="form-control" id="card-element"></div>
+								{{!-- Display card Element errors here --}}
+								<div id="card-errors"></div>
+							</div>
+						</div>	
+
+ 					</div>
+ 				</div>
+
+ 			</div>
+ 			<div class="col-md-1"></div>
+ 		</div>	
+
+
+		<div class="row margin-bottom">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 flex-end">
+				<button class="btn btn-primary" type="submit" id="submit-payment">Submit</button>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</form>
+
+	<div class="modal fade" id="create-payment-modal" tabindex="-1" role="dialog" aria-labelledby="createPaymentModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="create-payment-modal-header"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="create-payment-success">
+						<p><strong>Payment Gateway: </strong><span id="success-payment-gateway"></span></p>
+						<p><strong>Payment Reference Code: </strong><span id="success-payment-reference-code"></span></p>
+						<p>Please save the reference code above to check on details of your order later
+							<a href="/check-payment">here</a>
+						.</p>
+					</div>
+					<div id="create-payment-error">
+						<p><strong>Error Code: </strong><span id="error-code"></span></p>
+						<p><strong>Message: </strong><span id="error-message"></span></p>
+						<div class="stripe-error"><strong>Stripe Error Details: </strong>
+							<ul>
+								<li>Status Code: <span id="stripe-error-status-code"></span></li>
+								<li>Type: <span id="stripe-error-type"></span></li>
+								<li>Message: <span id="stripe-error-message"></span></li>
+							</ul>
+						</div>
+						<div class="mongo-error">Mongo Error Details:
+							<ul>
+								<li>Message: <span id="mongo-error-message"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="static/js/create_payment.js"></script>
